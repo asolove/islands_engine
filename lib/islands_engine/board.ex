@@ -1,13 +1,12 @@
 defmodule IslandsEngine.Board do
   alias IslandsEngine.{Coordinate, Island}
 
-  @type t() :: map()
-
+  @type t :: map()
   @spec new :: t()
   def new(), do: %{}
 
-  @spec position_island(Board.t(), atom(), IslandsEngine.Island.t()) ::
-          {:error, :overlapping_island} | Board.t()
+  @spec position_island(t(), atom(), IslandsEngine.Island.t()) ::
+          {:error, :overlapping_island} | t()
   def position_island(board, key, %Island{} = island) do
     case overlaps_existing_island?(board, key, island) do
       true -> {:error, :overlapping_island}

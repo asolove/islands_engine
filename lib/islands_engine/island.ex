@@ -18,7 +18,8 @@ defmodule IslandsEngine.Island do
     end
   end
 
-  @spec types :: list(atom())
+  @type type_name() :: atom()
+  @spec types :: list(type_name())
   def types(), do: [:atoll, :dot, :l_shape, :s_shape, :square]
 
   @spec overlaps?(Island.t(), Island.t()) :: boolean()

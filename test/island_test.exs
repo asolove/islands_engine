@@ -1,6 +1,6 @@
 defmodule IslandsEngine.IslandTest do
   use ExUnit.Case
-  alias IslandsEngine.{Board, Coordinate, Island}
+  alias IslandsEngine.{Coordinate, Island}
 
   describe "Island.guess/2" do
     setup do
@@ -15,11 +15,11 @@ defmodule IslandsEngine.IslandTest do
     end
 
     test "guess and hit", context do
-      assert {:hit, %Island{coordinates: coordinates, hit_coordinates: hit_coordinates} = island2} =
+      assert {:hit, %Island{coordinates: coordinates, hit_coordinates: hit_coordinates}} =
                Island.guess(context.island, context.hit_coordinate)
 
       assert MapSet.size(coordinates) == 1
-      assert MapSet.size(coordinates) == 1
+      assert MapSet.size(hit_coordinates) == 1
     end
   end
 
@@ -27,7 +27,6 @@ defmodule IslandsEngine.IslandTest do
     setup do
       {:ok, hit_coordinate} = Coordinate.new(4, 4)
       {:ok, island} = Island.new(:dot, hit_coordinate)
-      {:ok, miss_coordinate} = Coordinate.new(2, 2)
       {:ok, island: island, hit_coordinate: hit_coordinate}
     end
 
